@@ -1,10 +1,14 @@
-from django.urls import path
-from rest_framework.urlpatterns import format_suffix_patterns
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .endpoint import views,auth_views
+from mailings.endpoint.views import ClientViewSet, MessageViewSet, MailingViewSet
+
+router = DefaultRouter()
+router.register(r'mailings', MailingViewSet)
+router.register(r'messages', MessageViewSet)
+router.register(r'clients', ClientViewSet)
 
 urlpatterns = [
-    path('users/', views.UserList.as_view()),
-    path('users//', views.UserDetail.as_view()),
+    path('google/', auth_views.google_auth),
+    path('', include(router.urls)),
 ]
-
-urlpatterns = format_suffix_patterns(urlpatterns)
