@@ -1,12 +1,11 @@
-from django.shortcuts import render, get_object_or_404
-from rest_framework.response import Response
-from rest_framework.decorators import action
-from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
 from icecream import ic
+from rest_framework import viewsets
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
 from mailings.models import Mailing, Client, Message
 from mailings.serializers import MailingSerializer, ClientSerializer, MessageSerializer
-
-
 
 
 class ClientViewSet(viewsets.ModelViewSet):
@@ -19,8 +18,6 @@ class MessageViewSet(viewsets.ModelViewSet):
     """Вывод списка Сообщений"""
     serializer_class = MessageSerializer
     queryset = Message.objects.all()
-
-
 
 
 class MailingViewSet(viewsets.ModelViewSet):
@@ -45,7 +42,7 @@ class MailingViewSet(viewsets.ModelViewSet):
         total_mailings = Mailing.objects.count()
         mailing = Mailing.objects.values('pk')
         content = {'The number of mailings': total_mailings,
-                    'The number of messages and their status': ''}
+                   'The number of messages and their status': ''}
         result = {}
         # для каждой рассылке выводим общую статистику
         for item in mailing:

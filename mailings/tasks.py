@@ -3,12 +3,13 @@ import os
 
 import pytz
 import requests
-from celery.utils.log import get_task_logger
+
 from notification_service.celery import app
 from .models import Message, Client, Mailing
 
 URL = os.environ.get("TOKEN")
 TOKEN = os.environ.get("URL")
+
 
 @app.task(bind=True, retry_backoff=True)
 def send_message(self, data, client_id, mailing_id,

@@ -8,5 +8,6 @@ class MailingsConfig(AppConfig):
     """ 
     Привязываем сигналы к нашему приложению
     """
+
     def ready(self):
-        import mailings.signals
+        pass

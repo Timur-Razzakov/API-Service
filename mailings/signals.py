@@ -1,10 +1,5 @@
-import datetime
-
-import pytz
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils import timezone
-from icecream import ic
 
 from .models import Mailing, Client, Message
 from .tasks import send_message

@@ -8,10 +8,12 @@ class TestModel(APITestCase):
 
     def test_creates_mailings(self):
         mailing = Mailing.objects.create(date_time_start=now(), date_time_end=now(), message='first_test',
-                                         mailings_started=now().time(), mailings_ended=now().time(), tag='test',
+                                         mailings_started=now().time(), mailings_ended=now().time(),
+                                         tag='test',
                                          )
         self.assertIsInstance(mailing, Mailing)
         self.assertEqual(mailing.tag, 'test')
+
     #
     def test_creates_clients(self):
         client = Client.objects.create(phone_number='79989999515', mobile_operator='799',
@@ -25,4 +27,3 @@ class TestModel(APITestCase):
         message = Message.objects.create(sending_status='False', mailing_id=2, client_id=2)
         self.assertIsInstance(message, Message)
         self.assertEqual(message.sending_status, 'False')
-

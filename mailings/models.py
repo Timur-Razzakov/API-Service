@@ -5,6 +5,7 @@ from django.utils import timezone
 
 utc = pytz.UTC
 
+
 class AuthUser(models.Model):
     """ Модель пользователя
     """
@@ -14,6 +15,7 @@ class AuthUser(models.Model):
 
     def __str___(self):
         return self.email
+
 
 class Mailing(models.Model):
     """Рассылки"""
@@ -65,6 +67,7 @@ class Client(models.Model):
     def save(self, *args, **kwargs):
         self.mobile_operator_code = str(self.phone_number)[1:4]
         return super(Client, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = 'Client'
         verbose_name_plural = 'Clients'

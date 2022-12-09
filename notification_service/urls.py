@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from rest_framework.schemas import get_schema_view
-from mailings.endpoint import auth_views
 
 urlpatterns = [
 
@@ -14,9 +13,8 @@ urlpatterns = [
         template_name='index.html',
         extra_context={'schema_url': 'API_schema'}
     ), name='docs'),
-    path('', auth_views.google_login),
     path('admin/', admin.site.urls),
-    path('v1/', include('mailings.urls')),
+    path('', include('mailings.urls')),
     path('api-auth/', include('rest_framework.urls')),
 
 ]
